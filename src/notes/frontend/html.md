@@ -10,7 +10,7 @@ star: true
 cover: /assets/images/1.jpg
 banner: false
 date: 2026-10-07
-excerpt: AI摘要：HTML 基础
+# excerpt: AI摘要：HTML 基础
 ---
 
 ## 一、HTML 基础
