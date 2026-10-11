@@ -43,6 +43,8 @@ jobs:
 
       - name: 构建 VuePress 站点
         run: pnpm docs:build
+        env:
+          AI_API_KEY: ${{ secrets.AI_API_KEY }}
 
       - name: 添加 .nojekyll（跳过 Jekyll 处理）
         run: touch src/.vuepress/dist/.nojekyll
