@@ -28,7 +28,7 @@ export default hopeTheme({
 
   // 博客相关（各语言共享）
   blog: {
-    intro: "/about/homepage.html",
+    intro: "/zh/about/homepage.html",
     medias: {
       GitHub: "https://github.com/Gingesmallfish",
       Email: "1847535232@qq.com",
@@ -37,7 +37,7 @@ export default hopeTheme({
 
   // 多语言配置：导航栏、侧边栏、博客文案按语言区分
   locales: {
-    "/": {
+    "/zh/": {
       navbar: navbarZh,
       sidebar: sidebarZh,
       footer: "© 2026 姜小鱼",

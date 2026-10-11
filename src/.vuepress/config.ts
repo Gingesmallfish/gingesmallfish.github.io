@@ -15,7 +15,7 @@ export default defineUserConfig({
   lang: 'zh-CN',
 
   locales: {
-    '/': {
+    '/zh/': {
       lang: 'zh-CN',
       title: "Jiang's Blog",
       description: 'vuepress-theme-hope 的极客笔记',

@@ -32,7 +32,7 @@ const storedSummary = computed(
 /** 展示优先级：实时生成结果 > 构建期生成结果 */
 const summary = computed(() => liveSummary.value || storedSummary.value);
 
-const isEnglish = computed(() => route.path.startsWith("/en"));
+const isEnglish = computed(() => route.path.startsWith("/en/"));
 
 const links = computed(() =>
   isEnglish.value
@@ -42,9 +42,9 @@ const links = computed(() =>
         { text: "Tags", icon: "lucide:tag", url: "/en/tag/" },
       ]
     : [
-        { text: "前往主页", icon: "lucide:home", url: "/" },
-        { text: "全部分类", icon: "lucide:folder", url: "/category/" },
-        { text: "所有标签", icon: "lucide:tag", url: "/tag/" },
+        { text: "前往主页", icon: "lucide:home", url: "/zh/" },
+        { text: "全部分类", icon: "lucide:folder", url: "/zh/category/" },
+        { text: "所有标签", icon: "lucide:tag", url: "/zh/tag/" },
       ],
 );
 

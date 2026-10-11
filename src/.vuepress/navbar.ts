@@ -1,12 +1,12 @@
 import { navbar } from "vuepress-theme-hope";
 
 export const navbarZh = navbar([
-  "/",
+  "/zh/",
 
   {
     text: "笔记",
     icon: "pen-to-square",
-    prefix: "/notes/",
+    prefix: "/zh/notes/",
     children: [
       {
         text: "前端基础",
@@ -26,22 +26,22 @@ export const navbarZh = navbar([
   {
     text: "项目",
     icon: "folder-open",
-    link: "/project/",
+    link: "/zh/project/",
   },
 
   {
     text: "部署",
     icon: "rocket",
-    link: "/deploy/",
+    link: "/zh/deploy/",
   },
 
   {
     text: "探索",
     icon: "magnifying-glass",
     children: [
-      { text: "全部分类", icon: "folder-tree", link: "/category/" },
-      { text: "所有标签", icon: "tag", link: "/tag/" },
-      { text: "时间轴", icon: "clock", link: "/timeline/" },
+      { text: "全部分类", icon: "folder-tree", link: "/zh/category/" },
+      { text: "所有标签", icon: "tag", link: "/zh/tag/" },
+      { text: "时间轴", icon: "clock", link: "/zh/timeline/" },
     ],
   },
 
@@ -49,10 +49,10 @@ export const navbarZh = navbar([
     text: "关于本站",
     icon: "circle-info",
     children: [
-      { text: "个人主页", icon: "user", link: "/about/homepage" },
-      { text: "联系作者", icon: "envelope", link: "/about/contact" },
-      { text: "友情链接", icon: "link", link: "/about/links" },
-      { text: "工作装备", icon: "laptop-code", link: "/about/equipment" },
+      { text: "个人主页", icon: "user", link: "/zh/about/homepage" },
+      { text: "联系作者", icon: "envelope", link: "/zh/about/contact" },
+      { text: "友情链接", icon: "link", link: "/zh/about/links" },
+      { text: "工作装备", icon: "laptop-code", link: "/zh/about/equipment" },
       { text: "GitHub 主页", icon: "github", link: "https://github.com/gingesmallfish" },
     ],
   },

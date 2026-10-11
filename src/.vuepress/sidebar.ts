@@ -1,7 +1,7 @@
 import { sidebar } from "vuepress-theme-hope";
 
 export const sidebarZh = sidebar({
-  "/": [
+  "/zh/": [
     "",
     {
       text: "笔记",
@@ -27,21 +27,21 @@ export const sidebarZh = sidebar({
     {
       text: "项目",
       icon: "folder-open",
-      link: "/project/",
+      link: "/zh/project/",
     },
     {
       text: "部署",
       icon: "rocket",
-      link: "/deploy/",
+      link: "/zh/deploy/",
     },
     {
       text: "时间轴",
       icon: "clock",
-      link: "/timeline/",
+      link: "/zh/timeline/",
     },
   ],
 
-  "/notes/": [
+  "/zh/notes/": [
     {
       text: "前端基础",
       icon: "code",
@@ -57,7 +57,7 @@ export const sidebarZh = sidebar({
     },
   ],
 
-  "/about/": [
+  "/zh/about/": [
     {
       text: "关于本站",
       icon: "circle-info",

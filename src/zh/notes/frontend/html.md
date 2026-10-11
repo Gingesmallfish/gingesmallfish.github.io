@@ -10,7 +10,7 @@ star: true
 cover: /assets/images/1.jpg
 banner: false
 date: 2026-10-07
-# excerpt: AI摘要：HTML 基础
+excerpt: 本文介绍 HTML 基础知识，包括文档结构、常用标签、列表、表格及表单等核心语法。
 ---
 
 ## 一、HTML 基础
