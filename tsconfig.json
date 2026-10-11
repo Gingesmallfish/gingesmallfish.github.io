@@ -5,6 +5,7 @@
     "target": "ES2022",
     "baseUrl": ".",
     "ignoreDeprecations": "6.0",
+    "resolveJsonModule": true,
     "paths": {
       "vuepress-theme-hope/dist/client/blog": ["node_modules/vuepress-theme-hope/dist/client/blog.d.ts"],
       "@theme-hope/*": ["node_modules/vuepress-theme-hope/dist/client/*"]

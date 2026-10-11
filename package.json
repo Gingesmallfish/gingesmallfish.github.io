@@ -12,6 +12,7 @@
     "docs:update-package": "pnpm dlx vp-update"
   },
   "devDependencies": {
+    "@iconify/vue": "^5.0.3",
     "@vuepress/bundler-vite": "2.0.0-rc.31",
     "markmap-lib": "^0.18.12",
     "markmap-toolbar": "^0.18.12",
@@ -31,6 +32,7 @@
     "@vuepress/plugin-docsearch": "2.0.0-rc.31",
     "@vuepress/plugin-revealjs": "2.0.0-rc.47",
     "@waline/client": "^3.16.0",
+    "openai": "^7.32.0",
     "vue-router": "^5.4.0"
   },
   "properties": {

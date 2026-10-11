@@ -9,6 +9,7 @@ tags:
   - 工具
 banner: false
 star: true
+excerpt: 记录我日常开发和写博客使用的硬件设备与软件工具，包括 MacBook Pro 主力机、机械键盘等外设，以及 VS Code、Obsidian 等效率软件。
 ---
 
 # 工作装备
