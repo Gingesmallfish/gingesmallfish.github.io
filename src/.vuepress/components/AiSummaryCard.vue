@@ -6,11 +6,8 @@ import { RouteLink, useRoute } from "vuepress/client";
 import summaries from "../.temp/ai-summary/summaries.json";
 
 /**
- * AI 实时生成接口（Cloudflare Worker 代理）。
- * 部署 ai-summary-proxy/worker.js 后，把地址填到这里即可启用
- * 「生成本文简介」按钮，例如：
- *   const AI_ENDPOINT = "https://ai-summary.xxx.workers.dev";
- * 留空时按钮不显示，卡片只展示构建期生成的摘要。
+ * 可选：实时生成摘要的代理端点（如 Cloudflare Worker）。
+ * 留空则只展示构建期生成的摘要，不显示「生成」按钮。
  */
 const AI_ENDPOINT = "";
 
@@ -20,7 +17,6 @@ const loading = ref(false);
 const liveSummary = ref("");
 const error = ref("");
 
-/** 与构建期插件保持一致的路径归一化规则 */
 const normalizePath = (path: string): string =>
   path.replace(/index\.html$/u, "").replace(/\.html$/u, "").replace(/\/+$/u, "") ||
   "/";
@@ -29,10 +25,9 @@ const storedSummary = computed(
   () => (summaries as Record<string, string>)[normalizePath(route.path)],
 );
 
-/** 展示优先级：实时生成结果 > 构建期生成结果 */
 const summary = computed(() => liveSummary.value || storedSummary.value);
-
 const isEnglish = computed(() => route.path.startsWith("/en/"));
+const canGenerate = computed(() => Boolean(AI_ENDPOINT));
 
 const links = computed(() =>
   isEnglish.value
@@ -48,13 +43,10 @@ const links = computed(() =>
       ],
 );
 
-//
 const generateSummary = async (): Promise<void> => {
-  if (!AI_ENDPOINT || loading.value) return;
+  if (!canGenerate.value || loading.value) return;
 
-  const article = document.querySelector<HTMLElement>(
-    "#main-content [vp-content]",
-  );
+  const article = document.querySelector<HTMLElement>("#main-content [vp-content]");
   const text = article?.innerText ?? "";
 
   if (!text || text.trim().length < 100) {
@@ -71,11 +63,12 @@ const generateSummary = async (): Promise<void> => {
     const response = await fetch(AI_ENDPOINT, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ text: text.slice(0, 4000) }),
+      body: JSON.stringify({ text: text.slice(0, 8000) }),
     });
 
-    const data = (await response.json()) as { summary?: string; error?: string };
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
+    const data = (await response.json()) as { summary?: string; error?: string };
     if (data.summary) liveSummary.value = data.summary;
     else throw new Error(data.error || "Generation failed");
   } catch (err) {
@@ -85,10 +78,8 @@ const generateSummary = async (): Promise<void> => {
   }
 };
 
-// TODO: 复制摘要到剪贴板
 const copySummary = async (): Promise<void> => {
   if (!summary.value) return;
-
   try {
     await navigator.clipboard.writeText(summary.value);
     copied.value = true;
@@ -96,39 +87,50 @@ const copySummary = async (): Promise<void> => {
       copied.value = false;
     }, 2000);
   } catch {
-    // 剪贴板不可用时忽略
+    /* 剪贴板不可用时静默忽略 */
   }
 };
 </script>
 
 <template>
-  <div v-if="summary || AI_ENDPOINT" class="ai-summary-card">
+  <div v-if="summary || canGenerate" class="ai-summary-card">
     <div class="ai-summary-header">
       <Icon class="ai-summary-header-icon" icon="lucide:sparkles" />
-      <span class="ai-summary-title">{{ isEnglish ? "AI Summary" : "AI-摘要" }}</span>
+      <span class="ai-summary-title">{{ isEnglish ? "AI Summary" : "AI 摘要" }}</span>
       <span class="ai-summary-brand">DeepSeek</span>
     </div>
 
     <div v-if="summary" class="ai-summary-body">{{ summary }}</div>
-
-    <div v-else-if="error" class="ai-summary-body ai-summary-error">
-      {{ error }}
-    </div>
-
+    <div v-else-if="error" class="ai-summary-body ai-summary-error">{{ error }}</div>
     <div v-else class="ai-summary-body ai-summary-placeholder">
-      {{ isEnglish ? "Click the button below to generate a summary." : "点击下方按钮，为本文生成 AI 摘要。" }}
+      {{
+        isEnglish
+          ? "Click the button below to generate a summary."
+          : "点击下方按钮，为本文生成 AI 摘要。"
+      }}
     </div>
 
     <div class="ai-summary-actions">
       <button
-        v-if="AI_ENDPOINT"
+        v-if="canGenerate"
         type="button"
         class="ai-summary-btn ai-summary-btn-primary"
         :disabled="loading"
         @click="generateSummary"
       >
-        <Icon class="ai-summary-svg" :icon="loading ? 'lucide:loader-circle' : 'lucide:wand-sparkles'" />
-        {{ loading ? (isEnglish ? "Generating…" : "生成中…") : isEnglish ? "Generate Summary" : "生成本文简介" }}
+        <Icon
+          class="ai-summary-svg"
+          :icon="loading ? 'lucide:loader-circle' : 'lucide:wand-sparkles'"
+        />
+        {{
+          loading
+            ? isEnglish
+              ? "Generating…"
+              : "生成中…"
+            : isEnglish
+              ? "Generate Summary"
+              : "生成本文简介"
+        }}
       </button>
 
       <RouteLink
@@ -143,7 +145,7 @@ const copySummary = async (): Promise<void> => {
 
       <button type="button" class="ai-summary-btn" @click="copySummary">
         <Icon class="ai-summary-svg" :icon="copied ? 'lucide:check' : 'lucide:copy'" />
-        {{ copied ? (isEnglish ? "Copied" : "已复制") : isEnglish ? "Copy Summary" : "复制摘要" }}
+        {{ copied ? (isEnglish ? "Copied" : "已复制") : isEnglish ? "Copy" : "复制" }}
       </button>
     </div>
   </div>
@@ -209,7 +211,6 @@ const copySummary = async (): Promise<void> => {
   margin-top: 0.875rem;
 }
 
-/* Iconify 图标：尺寸统一，颜色随文字 */
 .ai-summary-svg {
   width: 0.9375rem;
   height: 0.9375rem;
@@ -243,7 +244,6 @@ const copySummary = async (): Promise<void> => {
   cursor: wait;
 }
 
-/* 生成中图标旋转动画 */
 .ai-summary-btn:disabled .ai-summary-svg {
   animation: ai-summary-spin 1s linear infinite;
 }
