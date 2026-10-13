@@ -48,6 +48,7 @@ const links = computed(() =>
       ],
 );
 
+//
 const generateSummary = async (): Promise<void> => {
   if (!AI_ENDPOINT || loading.value) return;
 
@@ -84,6 +85,7 @@ const generateSummary = async (): Promise<void> => {
   }
 };
 
+// TODO: 复制摘要到剪贴板
 const copySummary = async (): Promise<void> => {
   if (!summary.value) return;
 

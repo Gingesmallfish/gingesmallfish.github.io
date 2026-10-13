@@ -2,7 +2,6 @@ import { navbar } from "vuepress-theme-hope";
 
 export const navbarZh = navbar([
   "/zh/",
-
   {
     text: "笔记",
     icon: "pen-to-square",
@@ -22,19 +21,16 @@ export const navbarZh = navbar([
       },
     ],
   },
-
   {
     text: "项目",
     icon: "folder-open",
     link: "/zh/project/",
   },
-
   {
     text: "部署",
     icon: "rocket",
     link: "/zh/deploy/",
   },
-
   {
     text: "探索",
     icon: "magnifying-glass",
@@ -44,7 +40,6 @@ export const navbarZh = navbar([
       { text: "时间轴", icon: "clock", link: "/zh/timeline/" },
     ],
   },
-
   {
     text: "关于本站",
     icon: "circle-info",
@@ -59,12 +54,11 @@ export const navbarZh = navbar([
 ]);
 
 export const navbarEn = navbar([
-  "/en/",
-
+  "/",
   {
     text: "Notes",
     icon: "pen-to-square",
-    prefix: "/en/notes/",
+    prefix: "/notes/",
     children: [
       {
         text: "Frontend Basics",
@@ -80,37 +74,33 @@ export const navbarEn = navbar([
       },
     ],
   },
-
   {
     text: "Projects",
     icon: "folder-open",
-    link: "/en/project/",
+    link: "/project/",
   },
-
   {
     text: "Deploy",
     icon: "rocket",
-    link: "/en/deploy/",
+    link: "/deploy/",
   },
-
   {
     text: "Explore",
     icon: "magnifying-glass",
     children: [
-      { text: "Categories", icon: "folder-tree", link: "/en/category/" },
-      { text: "Tags", icon: "tag", link: "/en/tag/" },
-      { text: "Timeline", icon: "clock", link: "/en/timeline/" },
+      { text: "Categories", icon: "folder-tree", link: "/category/" },
+      { text: "Tags", icon: "tag", link: "/tag/" },
+      { text: "Timeline", icon: "clock", link: "/timeline/" },
     ],
   },
-
   {
     text: "About",
     icon: "circle-info",
     children: [
-      { text: "Homepage", icon: "user", link: "/en/about/homepage" },
-      { text: "Contact Me", icon: "envelope", link: "/en/about/contact" },
-      { text: "Links", icon: "link", link: "/en/about/links" },
-      { text: "My Gear", icon: "laptop-code", link: "/en/about/equipment" },
+      { text: "Homepage", icon: "user", link: "/about/homepage" },
+      { text: "Contact Me", icon: "envelope", link: "/about/contact" },
+      { text: "Links", icon: "link", link: "/about/links" },
+      { text: "My Gear", icon: "laptop-code", link: "/about/equipment" },
       { text: "GitHub", icon: "github", link: "https://github.com/gingesmallfish" },
     ],
   },

@@ -73,7 +73,7 @@ export const sidebarZh = sidebar({
 });
 
 export const sidebarEn = sidebar({
-  "/en/": [
+  "/": [
     "",
     {
       text: "Notes",
@@ -99,21 +99,21 @@ export const sidebarEn = sidebar({
     {
       text: "Projects",
       icon: "folder-open",
-      link: "/en/project/",
+      link: "/project/",
     },
     {
       text: "Deploy",
       icon: "rocket",
-      link: "/en/deploy/",
+      link: "/deploy/",
     },
     {
       text: "Timeline",
       icon: "clock",
-      link: "/en/timeline/",
+      link: "/timeline/",
     },
   ],
 
-  "/en/notes/": [
+  "/notes/": [
     {
       text: "Frontend Basics",
       icon: "code",
@@ -129,7 +129,7 @@ export const sidebarEn = sidebar({
     },
   ],
 
-  "/en/about/": [
+  "/about/": [
     {
       text: "About",
       icon: "circle-info",

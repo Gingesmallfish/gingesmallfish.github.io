@@ -58,42 +58,18 @@ onUnmounted(() => {
   <Blog>
     <template #heroBg v-if="bgImages.length">
       <div class="vp-blog-mask hero-carousel-mask">
-        <div
-          v-for="(img, index) in bgImages"
-          :key="img"
-          class="hero-carousel-item"
-          :class="{ active: index === current }"
-          :style="{ backgroundImage: `url(${img})` }"
-        />
+        <div v-for="(img, index) in bgImages" :key="img" class="hero-carousel-item"
+          :class="{ active: index === current }" :style="{ backgroundImage: `url(${img})` }" />
 
         <div v-if="bgImages.length > 1" class="hero-carousel-dots">
-          <span
-            v-for="(_, index) in bgImages"
-            :key="index"
-            :class="{ active: index === current }"
-            @click="go(index)"
-          />
+          <span v-for="(_, index) in bgImages" :key="index" :class="{ active: index === current }" @click="go(index)" />
         </div>
       </div>
     </template>
 
     <template #articleCover="{ cover }">
-      <video
-        v-if="isVideo(cover)"
-        class="vp-article-cover"
-        :src="withBase(cover)"
-        autoplay
-        muted
-        loop
-        playsinline
-      />
-      <img
-        v-else-if="cover"
-        class="vp-article-cover"
-        :src="withBase(cover)"
-        loading="lazy"
-        alt=""
-      />
+      <video v-if="isVideo(cover)" class="vp-article-cover" :src="withBase(cover)" autoplay muted loop playsinline />
+      <img v-else-if="cover" class="vp-article-cover" :src="withBase(cover)" loading="lazy" alt="" />
     </template>
   </Blog>
 </template>

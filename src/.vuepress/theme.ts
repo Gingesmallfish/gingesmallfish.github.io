@@ -26,43 +26,39 @@ export default hopeTheme({
   lastUpdated: true,
   contributors: true,
 
-  // 博客相关（各语言共享）
-  blog: {
-    intro: "/zh/about/homepage.html",
-    medias: {
-      GitHub: "https://github.com/Gingesmallfish",
-      Email: "1847535232@qq.com",
-    },
-  },
-
   // 多语言配置：导航栏、侧边栏、博客文案按语言区分
   locales: {
+    "/": {
+      navbar: navbarEn,
+      sidebar: sidebarEn,
+      footer: "© 2026 Jiang",
+      blog: {
+        intro: "/about/homepage.html",
+        medias: {
+          GitHub: "https://github.com/Gingesmallfish",
+          Email: "1847535232@qq.com",
+        },
+        timeline: "Timeline",
+      },
+      metaLocales: {
+        editLink: "Edit this page on GitHub",
+      },
+    },
     "/zh/": {
       navbar: navbarZh,
       sidebar: sidebarZh,
       footer: "© 2026 姜小鱼",
-
       blog: {
+        intro: "/zh/about/homepage.html",
+        medias: {
+          GitHub: "https://github.com/Gingesmallfish",
+          Email: "1847535232@qq.com",
+        },
         description: "姜小鱼的博客 - 我很懒，所以没有写简介",
         timeline: "时间轴",
       },
-
       metaLocales: {
         editLink: "在 GitHub 上编辑此页",
-      },
-    },
-
-    "/en/": {
-      navbar: navbarEn,
-      sidebar: sidebarEn,
-      footer: "© 2026 Jiang",
-
-      blog: {
-        timeline: "Timeline",
-      },
-
-      metaLocales: {
-        editLink: "Edit this page on GitHub",
       },
     },
   },
